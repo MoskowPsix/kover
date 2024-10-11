@@ -1,6 +1,7 @@
 from point import Point
 import math
 
+URL = "https://games-test.datsteam.dev/play/magcarp/player/move"
 MAX_VELOCITY=10
 
 def move_to_point(position1: Point, position2: Point):
