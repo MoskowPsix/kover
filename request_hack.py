@@ -10,7 +10,7 @@ class RequestHack:
     def post(self, params=[]):
         return requests.post(
             f"{self.url}/play/magcarp/player/move",
-            params,
+            {"transports": params},
             headers={"X-Auth-Token": self.token},
         ).json()
 

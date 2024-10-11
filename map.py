@@ -10,10 +10,34 @@ fig, ax = plt.subplots()
 
 
 req_hack = RequestHack()
+response = []
+def get_map(data):
+    if (data):
+        for kover in data['transports']:
+            if kover['x'] >= 8500:
+                x = -10
+            elif kover['x'] <= 500:
+                x = 10  
 
+            if kover['y'] >= 8500:
+                y = -10
+            elif kover['y'] <= 500:
+                y = 10 
+            response.append({
+                'id': kover['id'],
+                "activateShield": False,
+                'acceleration': {
+                    'x': x,
+                    'y': y
+                },
+                'attack': {
+                    'x': 10,
+                    'y': 10
+                }
+            })
+        
 
-def get_map():
-    data = req_hack.post(params={"transports": []})
+    data = req_hack.post()
     return data
 
 
@@ -45,12 +69,12 @@ def get_enemies(data):
 
 while True:
     ax.cla()
-
+    data = []
     # Задаем размеры области
     ax.set_xlim(0, AREA_SIZE)
     ax.set_ylim(0, AREA_SIZE)
 
-    data = get_map()
+    data = get_map(data)
     get_anomalies(data)
     get_our_kovrs(data)
     get_enemies(data)
