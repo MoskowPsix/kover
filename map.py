@@ -14,6 +14,7 @@ req_hack = RequestHack()
 
 def get_map():
     data = req_hack.post(params={"transports": []})
+    print(data["points"])
     return data
 
 
@@ -22,7 +23,7 @@ def get_anomalies(data):
     anomalies = data["anomalies"]
     for obj in anomalies:
         circle = plt.Circle(
-            (obj["x"], obj["y"]), obj["radius"], color="blue", fill=True, alpha=0.5
+            (obj["x"], obj["y"]), obj["radius"]*20, color="blue", fill=True, alpha=0.4
         )
         ax.add_artist(circle)
 
@@ -30,16 +31,14 @@ def get_anomalies(data):
 def get_our_kovrs(data):
     kovrs = data["transports"]
     for obj in kovrs:
-        circle = plt.Circle((obj["x"], obj["y"]), 50, color="red", fill=True, alpha=0.5)
+        circle = plt.Circle((obj["x"], obj["y"]), 50, color="red", fill=True, alpha=1)
         ax.add_artist(circle)
 
 
 def get_enemies(data):
     enemies = data["enemies"]
     for obj in enemies:
-        circle = plt.Circle(
-            (obj["x"], obj["y"]), 50, color="black", fill=True, alpha=0.5
-        )
+        circle = plt.Circle((obj["x"], obj["y"]), 50, color="black", fill=True, alpha=1)
         ax.add_artist(circle)
 
 
@@ -63,4 +62,4 @@ while True:
 
     # Показываем график
     plt.savefig("out.png")
-    time.sleep(1)
+    time.sleep(0.5)
