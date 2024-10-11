@@ -1,5 +1,6 @@
 from point import Point
 import math
+from request_hack import RequestHack
 
 URL = "https://games-test.datsteam.dev/play/magcarp/player/move"
 MAX_VELOCITY=10
@@ -22,5 +23,9 @@ p2 = Point(120, 50)
     
 print(move_to_point(p1, p2).x)
 
+req = RequestHack()
 
-    
+params = {
+    'transports': []
+}
+print(req.post(params))
