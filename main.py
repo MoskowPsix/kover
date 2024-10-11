@@ -23,3 +23,8 @@ p2 = Point(120, 50)
 print(move_to_point(p1, p2).x)
 
 req = RequestHack()
+
+params = {
+    'transports': []
+}
+print(req.post(params))
