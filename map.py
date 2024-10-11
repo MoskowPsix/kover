@@ -38,6 +38,7 @@ def get_map(data):
         
 
     data = req_hack.post()
+    print(data)
     return data
 
 
@@ -64,6 +65,14 @@ def get_enemies(data):
         circle = plt.Circle((obj["x"], obj["y"]), 50, color="black", fill=True, alpha=1)
         ax.add_artist(circle)
 
+def get_bound(data):
+    bound = data["bounties"]
+    for obj in bound:
+        circle = plt.Circle((obj["x"], obj["y"]), 50, color="yellow", fill=True, alpha=1)
+        ax.add_artist(circle)
+
+
+
 
 while True:
     ax.cla()
@@ -76,6 +85,7 @@ while True:
     get_anomalies(data)
     get_our_kovrs(data)
     get_enemies(data)
+    get_bound(data)
 
     plt.xlabel("X")
     plt.ylabel("Y")
